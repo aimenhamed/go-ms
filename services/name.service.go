@@ -6,7 +6,10 @@ import (
 	"net/http"
 )
 
-func NamesHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("NamseHandler called.")
+type NamesService struct {
+}
+
+func (s NamesService) HandleRequest(w http.ResponseWriter, r *http.Request) {
+	log.Printf("NamesService called.")
 	fmt.Fprint(w, "list names here")
 }
