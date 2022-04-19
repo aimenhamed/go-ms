@@ -1,25 +1,15 @@
 package controllers
 
 import (
-	"github.com/aimenhamed/go-ms/interfaces"
 	"github.com/aimenhamed/go-ms/services"
-	"github.com/gorilla/mux"
-	"log"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 type NamesController struct {
-	service interfaces.Service
+	nameService services.NamesService
 }
 
-func (c NamesController) ServiceHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("NamesController called.")
-	c.service.HandleRequest(w, r)
-}
-
-func (c NamesController) RegisterRoutes(r *mux.Router) {
-	c.service = services.NamesService{}
-	r.StrictSlash(true)
-	r.HandleFunc("/names", c.ServiceHandler)
-	log.Printf("NamesRoutes registered.")
+func (c NamesController) RegisterRoutes(r *gin.RouterGroup) {
+	c.nameService = services.NamesService{}
+	r.GET("/names", c.nameService.GetName)
 }

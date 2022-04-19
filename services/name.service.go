@@ -1,15 +1,14 @@
 package services
 
 import (
-	"fmt"
+	"github.com/gin-gonic/gin"
 	"log"
-	"net/http"
 )
 
 type NamesService struct {
 }
 
-func (s NamesService) HandleRequest(w http.ResponseWriter, r *http.Request) {
+func (s NamesService) GetName(c *gin.Context) {
 	log.Printf("NamesService called.")
-	fmt.Fprint(w, "list names here")
+	c.String(200, "list here")
 }

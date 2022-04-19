@@ -1,30 +1,25 @@
 package main
 
 import (
-	"github.com/aimenhamed/go-ms/interfaces"
-	"log"
-	"net/http"
-
 	"github.com/aimenhamed/go-ms/controllers"
-	"github.com/gorilla/mux"
+	"github.com/aimenhamed/go-ms/interfaces"
+	"github.com/gin-gonic/gin"
 )
 
-func serve(port string, r http.Handler) {
-	err := http.ListenAndServe(":"+port, r)
-
-	if err != nil {
-		log.Fatal("Serving error.")
-	}
-}
-
-func initialiseController(c interfaces.Controller, path *mux.Router) {
-	c.RegisterRoutes(path)
+func initialiseController(c interfaces.Controller, r *gin.RouterGroup) {
+	c.RegisterRoutes(r)
 }
 
 func main() {
-	r := mux.NewRouter()
-	v1 := r.PathPrefix("/api/v1").Subrouter()
+	r := gin.Default()
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong",
+		})
+	})
+
+	v1 := r.Group("/api/v1")
 	initialiseController(controllers.NamesController{}, v1)
 
-	serve("8000", r)
+	r.Run()
 }
