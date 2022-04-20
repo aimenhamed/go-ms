@@ -3,7 +3,15 @@ package main
 import (
 	"github.com/aimenhamed/go-ms/controllers"
 	"github.com/aimenhamed/go-ms/interfaces"
+	"github.com/aimenhamed/go-ms/services"
 	"github.com/gin-gonic/gin"
+)
+
+var (
+	nameService       = services.NewNamesService()
+	nameController    = controllers.NewNameController(nameService)
+	accountService    = services.NewAccountService()
+	accountController = controllers.NewAccountController(accountService)
 )
 
 func initialiseController(c interfaces.Controller, r *gin.RouterGroup) {
@@ -19,7 +27,8 @@ func main() {
 	})
 
 	v1 := r.Group("/api/v1")
-	initialiseController(controllers.NamesController{}, v1)
+	initialiseController(nameController, v1)
+	initialiseController(accountController, v1)
 
 	r.Run()
 }
