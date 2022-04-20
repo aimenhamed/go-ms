@@ -1,11 +1,9 @@
 package interfaces
 
 import (
-	"github.com/gorilla/mux"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 type Controller interface {
-	RegisterRoutes(path *mux.Router)
-	ServiceHandler(w http.ResponseWriter, r *http.Request)
+	RegisterRoutes(r *gin.RouterGroup)
 }
