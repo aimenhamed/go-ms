@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/aimenhamed/go-ms/services"
+	"github.com/aimenhamed/go-ms/pkg/services"
 	"github.com/gin-gonic/gin"
 )
 

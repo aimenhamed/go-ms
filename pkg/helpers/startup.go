@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"github.com/aimenhamed/go-ms/interfaces"
+	"github.com/aimenhamed/go-ms/pkg/interfaces"
 	"github.com/gin-gonic/gin"
 )
 

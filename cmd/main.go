@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/aimenhamed/go-ms/controllers"
-	"github.com/aimenhamed/go-ms/helpers"
-	"github.com/aimenhamed/go-ms/interfaces"
-	"github.com/aimenhamed/go-ms/services"
+	"github.com/aimenhamed/go-ms/pkg/controllers"
+	"github.com/aimenhamed/go-ms/pkg/helpers"
+	"github.com/aimenhamed/go-ms/pkg/interfaces"
+	"github.com/aimenhamed/go-ms/pkg/services"
 	"github.com/gin-gonic/gin"
 )
 
