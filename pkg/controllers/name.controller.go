@@ -6,13 +6,9 @@ import (
 )
 
 type NamesController struct {
-	nameService *services.NamesService
-}
-
-func NewNameController(service *services.NamesService) NamesController {
-	return NamesController{service}
+	NameService *services.NamesService
 }
 
 func (c NamesController) RegisterRoutes(r *gin.RouterGroup) {
-	r.GET("/names", c.nameService.GetName)
+	r.GET("/names", c.NameService.GetName)
 }

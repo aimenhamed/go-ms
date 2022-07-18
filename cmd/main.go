@@ -9,10 +9,10 @@ import (
 )
 
 var (
-	nameService       = services.NewNamesService()
-	nameController    = controllers.NewNameController(nameService)
-	accountService    = services.NewAccountService()
-	accountController = controllers.NewAccountController(accountService)
+	nameService       = services.NamesService{}
+  nameController    = controllers.NamesController{NameService: &nameService}
+	accountService    = services.AccountService{}
+  accountController = controllers.AccountController{AccountService: &accountService}
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	helpers.HealthCheck(r)
 
 	v1 := r.Group("/api/v1")
-	c := []interfaces.Controller{nameController, accountController}
+	c := []interfaces.Controller{&nameController, &accountController}
 	helpers.InitialiseControllers(c, v1)
 
 	r.Run()
