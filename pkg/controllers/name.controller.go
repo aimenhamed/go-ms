@@ -2,13 +2,13 @@ package controllers
 
 import (
 	"github.com/aimenhamed/go-ms/pkg/services"
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
 type NamesController struct {
 	NameService *services.NamesService
 }
 
-func (c NamesController) RegisterRoutes(r *gin.RouterGroup) {
-	r.GET("/names", c.NameService.GetName)
+func (c NamesController) RegisterRoutes(r fiber.Router) {
+	r.Get("/names", c.NameService.GetName)
 }

@@ -1,9 +1,9 @@
 package interfaces
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
 type Controller interface {
-	RegisterRoutes(r *gin.RouterGroup)
+	RegisterRoutes(r fiber.Router)
 }

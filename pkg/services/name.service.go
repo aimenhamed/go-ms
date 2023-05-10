@@ -1,8 +1,9 @@
 package services
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 type NamesService struct {
@@ -12,10 +13,10 @@ func NewNamesService() *NamesService {
 	return &NamesService{}
 }
 
-func (s NamesService) GetName(c *gin.Context) {
+func (s NamesService) GetName(c *fiber.Ctx) error {
 	log.Printf("NamesService called.")
-	c.JSON(200,
-		gin.H{
+	return c.JSON(
+		fiber.Map{
 			"message": "list Names here",
 		})
 }
